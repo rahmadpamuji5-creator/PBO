@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buat Laporan - TIK Find</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<header class="page-header">
+    <a class="brand" th:href="@{/}" aria-label="TIK Find, beranda">
+        <span class="brand-mark">T</span>
+        <span class="brand-name">TIK<span>Find</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Navigasi utama">
+        <a th:href="@{/}">Beranda</a>
+        <a th:href="@{/laporan/}">Daftar laporan</a>
+    </nav>
+</header>
+<main class="page-main">
+    <section class="page-intro">
+        <p class="eyebrow"><span></span> TIK FIND / LAPORAN BARU</p>
+        <h1>Buat laporan <em>barang.</em></h1>
+        <p>Bantu barang yang hilang menemukan pemiliknya, atau beri tahu orang lain jika kamu menemukannya.</p>
+    </section>
+    <section class="content-panel form-panel">
+        <form th:action="@{/laporan/simpan}" th:object="${laporanForm}" method="post" class="laporan-form">
+            <div class="form-group">
+                <label for="namaBarang">Nama Barang <span>*</span></label>
+                <input id="namaBarang" type="text" th:field="*{namaBarang}" placeholder="Contoh: dompet hitam" required />
+                <span class="field-error" th:if="${#fields.hasErrors('namaBarang')}" th:errors="*{namaBarang}"></span>
+            </div>
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi</label>
+                <textarea id="deskripsi" th:field="*{deskripsi}" placeholder="Ciri-ciri atau informasi tambahan"></textarea>
+                <span class="field-error" th:if="${#fields.hasErrors('deskripsi')}" th:errors="*{deskripsi}"></span>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="lokasi">Lokasi <span>*</span></label>
+                    <input id="lokasi" type="text" th:field="*{lokasi}" placeholder="Contoh: lantai 2, dekat lab" required />
+                    <span class="field-error" th:if="${#fields.hasErrors('lokasi')}" th:errors="*{lokasi}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="tanggalLaporan">Tanggal &amp; waktu <span>*</span></label>
+                    <input id="tanggalLaporan" type="datetime-local" th:field="*{tanggalLaporan}" required />
+                    <span class="field-error" th:if="${#fields.hasErrors('tanggalLaporan')}" th:errors="*{tanggalLaporan}"></span>
+                </div>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="kontak">Kontak <span>*</span></label>
+                    <input id="kontak" type="text" th:field="*{kontak}" placeholder="Nomor yang bisa dihubungi" required />
+                    <span class="field-error" th:if="${#fields.hasErrors('kontak')}" th:errors="*{kontak}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="hilang">Status barang</label>
+                    <select id="hilang" th:field="*{hilang}">
+                        <option th:value="true">Hilang</option>
+                        <option th:value="false">Ditemukan</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="button button-primary" type="submit">Simpan laporan <span aria-hidden="true">→</span></button>
+                <a th:href="@{/laporan/}" class="button button-secondary">Batal</a>
+            </div>
+        </form>
+    </section>
+</main>
+<footer class="site-footer">
+    <p>&copy; 2026 Politeknik Negeri Lhokseumawe <span>·</span> TIK Find</p>
+    <span>Berawal dari kepedulian bersama.</span>
+</footer>
+</body>
+</html>

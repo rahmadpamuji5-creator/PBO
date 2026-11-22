@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TIK Find - Beranda</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body class="home-page">
+    <header class="site-header">
+        <a class="brand" th:href="@{/}" aria-label="TIK Find, beranda">
+            <span class="brand-mark">T</span>
+            <span class="brand-name">TIK<span>Find</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Navigasi utama">
+            <a th:href="@{/laporan/}">Daftar laporan</a>
+            <a class="nav-cta" th:href="@{/laporan/baru}">Buat laporan <span aria-hidden="true">↗</span></a>
+        </nav>
+    </header>
+    <main>
+        <section class="home-hero">
+            <div class="hero-copy">
+                <p class="eyebrow"><span></span> Layanan barang hilang &amp; ditemukan</p>
+                <h1>Barang tertinggal?<br />Biar cepat <em>kembali.</em></h1>
+                <p class="hero-description">Temukan atau laporkan barang di Gedung TIK Politeknik Negeri Lhokseumawe, semuanya di satu tempat.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" th:href="@{/laporan/}">Lihat daftar laporan <span aria-hidden="true">→</span></a>
+                    <a class="button button-secondary" th:href="@{/laporan/baru}">Laporkan barang</a>
+                </div>
+            </div>
+            <aside class="hero-note">
+                <span class="note-index">01 / TIK FIND</span>
+                <div class="note-symbol" aria-hidden="true">↗</div>
+                <p>Barang hilang atau ditemukan di sekitar kampus? Mulai dari sini.</p>
+                <span class="note-rule"></span>
+                <span class="note-location">GEDUNG TIK · PNL</span>
+            </aside>
+            <div class="hero-caption"><span>POLITEKNIK NEGERI LHOKSEUMAWE</span><span>RUANG UNTUK MENEMUKAN KEMBALI</span></div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <p>&copy; 2026 Politeknik Negeri Lhokseumawe <span>·</span> TIK Find</p>
+        <span>Berawal dari kepedulian bersama.</span>
+    </footer>
+</body>
+</html>

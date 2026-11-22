@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daftar Laporan - TIK Find</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<header class="page-header">
+    <a class="brand" th:href="@{/}" aria-label="TIK Find, beranda">
+        <span class="brand-mark">T</span>
+        <span class="brand-name">TIK<span>Find</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Navigasi utama">
+        <a th:href="@{/}">Beranda</a>
+        <a class="nav-cta" th:href="@{/laporan/baru}">Buat laporan <span aria-hidden="true">↗</span></a>
+    </nav>
+</header>
+<main class="page-main">
+    <section class="page-intro">
+        <p class="eyebrow"><span></span> TIK FIND / PAPAN INFORMASI</p>
+        <h1>Daftar <em>laporan.</em></h1>
+        <p>Jelajahi laporan barang hilang dan ditemukan di Gedung TIK.</p>
+    </section>
+    <section class="content-panel list-panel">
+        <div class="list-toolbar">
+            <div>
+                <span class="panel-kicker">BARANG HILANG &amp; DITEMUKAN</span>
+                <h2>Semua laporan</h2>
+            </div>
+            <form th:action="@{/laporan/cari}" method="get" class="search-form">
+                <label class="visually-hidden" for="search-query">Cari nama barang</label>
+                <input id="search-query" type="text" name="q" placeholder="Cari nama barang..." th:value="${searchQuery}" />
+                <button type="submit">Cari <span aria-hidden="true">→</span></button>
+            </form>
+        </div>
+        <div class="table-wrap">
+            <table class="laporan-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama Barang</th>
+                        <th>Status</th>
+                        <th>Lokasi</th>
+                        <th>Tanggal Laporan</th>
+                        <th>Kontak</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="laporan : ${laporans}">
+                        <td class="report-id" th:text="${laporan.id}"></td>
+                        <td class="report-name" th:text="${laporan.namaBarang}"></td>
+                        <td><span class="status-badge" th:classappend="${laporan.hilang ? ' status-lost' : ' status-found'}" th:text="${laporan.hilang ? 'Hilang' : 'Ditemukan'}"></span></td>
+                        <td th:text="${laporan.lokasi}"></td>
+                        <td th:text="${#temporals.format(laporan.tanggalLaporan, 'dd-MM-yyyy HH:mm')}"></td>
+                        <td th:text="${laporan.kontak}"></td>
+                        <td><a class="detail-link" th:href="@{'/laporan/detail/' + ${laporan.id}}">Detail <span aria-hidden="true">→</span></a></td>
+                    </tr>
+                    <tr th:if="${laporans.empty}">
+                        <td class="empty-state" colspan="7">Belum ada laporan untuk ditampilkan.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<footer class="site-footer">
+    <p>&copy; 2026 Politeknik Negeri Lhokseumawe <span>·</span> TIK Find</p>
+    <span>Berawal dari kepedulian bersama.</span>
+</footer>
+</body>
+</html>
